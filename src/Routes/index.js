@@ -60,8 +60,8 @@ function MyTab() {
                     tabBarIcon: ({focused}) => {
                         return(
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Entypo name="home" size={24} color={focused ? '#16247d' : 'black'} />
-                                <Text style={{fontSize: 12, color:focused ? '#16247d' : 'black'}}>Home</Text>
+                                <Entypo name="home" size={24} color={focused ? '#378CE7' : 'black'} />
+                                <Text style={{fontSize: 12, color:focused ? '#378CE7' : 'black'}}>Home</Text>
                             </View>
                         )
                     }
@@ -75,8 +75,8 @@ function MyTab() {
                     tabBarIcon: ({focused}) => {
                         return(
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Entypo name="list" size={24} color={focused ? '#16247d' : 'black'} />
-                                <Text style={{fontSize: 12, color:focused ? '#16247d' : 'black'}}>List</Text>
+                                <Entypo name="list" size={24} color={focused ? '#378CE7' : 'black'} />
+                                <Text style={{fontSize: 12, color:focused ? '#378CE7' : 'black'}}>List</Text>
                             </View>
                         )
                     }
@@ -112,8 +112,8 @@ function MyTab() {
                     tabBarIcon: ({focused}) => {
                         return(
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Entypo name="info" size={24} color={focused ? '#16247d' : 'black'} />
-                                <Text style={{fontSize: 12, color:focused ? '#16247d' : 'black'}}>About</Text>
+                                <Entypo name="info" size={24} color={focused ? '#378CE7' : 'black'} />
+                                <Text style={{fontSize: 12, color:focused ? '#378CE7' : 'black'}}>About</Text>
                             </View>
                         )
                     }
@@ -126,8 +126,8 @@ function MyTab() {
                     tabBarIcon: ({focused}) => {
                         return(
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <MaterialCommunityIcons name="account" size={24} color={focused ? '#16247d' : 'black'} />
-                                <Text style={{fontSize: 12, color:focused ? '#16247d' : 'black'}}>Profile</Text>
+                                <MaterialCommunityIcons name="account" size={24} color={focused ? '#378CE7' : 'black'} />
+                                <Text style={{fontSize: 12, color:focused ? '#378CE7' : 'black'}}>Profile</Text>
                             </View>
                         )
                     }
