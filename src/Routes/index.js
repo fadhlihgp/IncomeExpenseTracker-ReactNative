@@ -24,7 +24,10 @@ export const Router = () => {
         <stack.Navigator>
             {/*<stack.Screen name="Login" component={Login} />*/}
             {isAuthenticated ? (
-                <stack.Screen name="myTab" component={MyTab} options={{headerShown: false}} />
+                <>
+                    <stack.Screen name="myTab" component={MyTab} options={{headerShown: false}} />
+                    <stack.Screen name={"List"} component={TransactionList} options={{headerShown: false}} />
+                </>
             ) : (
                 <>
                     <stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />

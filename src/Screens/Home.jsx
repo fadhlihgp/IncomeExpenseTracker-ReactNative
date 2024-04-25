@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {logoutAuth} from "../Redux/Slices/authSlice";
 import {HomeContainer} from "../Features/Home";
 
-export const Home = () => {
+export const Home = ({navigation}) => {
     const dispatch = useDispatch();
 
     const handleLogout = async () => {
@@ -17,6 +17,6 @@ export const Home = () => {
         //     <Text>Ini Beranda</Text>
         //     <Button title={"Keluar"} onPress={handleLogout} />
         // </View>
-        <HomeContainer />
+        <HomeContainer navigation={navigation} />
     )
 }

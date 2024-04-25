@@ -70,6 +70,7 @@ export const RegisterContainer = ({navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
+        marginTop: 50,
         flexGrow: 1,
         backgroundColor: '#F1F1F1'
         // justifyContent: 'center',
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         // resizeMode: 'contain',
-        height: '80%',
+        height: '90%',
         alignItems: 'center',
         paddingVertical: 80,
         gap: 25

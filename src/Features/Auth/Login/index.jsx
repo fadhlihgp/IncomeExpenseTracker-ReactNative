@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         // resizeMode: 'contain',
-        height: '80%',
+        height: '70%',
         alignItems: 'center',
         paddingVertical: 50,
         gap: 25
