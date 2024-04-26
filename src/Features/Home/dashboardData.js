@@ -26,6 +26,20 @@ export const DashboardData = {
                 "date": "2024-04-23T00:00:00",
                 "information": "From ojol",
                 "amount": 200000
+            },
+            {
+                "id": "d34336ba-1f30-4462-ab9sb-0e3843be6a0f",
+                "isIncome": true,
+                "date": "2024-04-25T00:00:00",
+                "information": "Salary",
+                "amount": 5000000
+            },
+            {
+                "id": "f2d7cbee-8485-4978-a3c0-ce6fad260b460",
+                "isIncome": false,
+                "date": "2024-04-23T00:00:00",
+                "information": "Pay Debt",
+                "amount": 50000
             }
         ]
     }

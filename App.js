@@ -13,12 +13,14 @@ export default function App() {
       //
       //     {/*<Toast />*/}
       // </>
-      <Provider store={store}>
-          <NavigationContainer>
-              <Router />
-          </NavigationContainer>
-          <Toast />
-      </Provider>
+      <>
+          <Provider store={store}>
+              <NavigationContainer>
+                  <Router />
+              </NavigationContainer>
+          </Provider>
+              <Toast />
+      </>
   );
 }
 

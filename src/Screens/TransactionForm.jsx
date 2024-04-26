@@ -1,9 +1,8 @@
 import {Text, View} from "react-native";
+import {FormTransactionContainer} from "../Features/FormTransaction";
 
 export const TransactionForm = ({navigation}) => {
     return(
-        <View>
-            <Text>This is form</Text>
-        </View>
+        <FormTransactionContainer navigation={navigation} />
     )
 }
