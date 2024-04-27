@@ -118,7 +118,7 @@ export const TransactionListComponent = ({transactionsData}) => {
                     />
                 </View>
 
-                <DataContainer listData={filter} />
+                <DataContainer  listData={filter} />
             </SafeAreaView>
         </View>
     )

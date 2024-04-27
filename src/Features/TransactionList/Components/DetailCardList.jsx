@@ -6,9 +6,10 @@ import {FontAwesome, FontAwesome6} from "@expo/vector-icons";
 import {useDeleteIncomeExpenseMutation} from "../../../Redux/Slices/inExpApi";
 import Toast from "react-native-toast-message";
 import {useEffect} from "react";
+import {useNavigation} from "@react-navigation/native";
 
 export const DetailCardList = ({incomeExpense}) => {
-
+    const navigation = useNavigation();
     const [deleteIncomeExpense, { isLoading, isError, error, data }] = useDeleteIncomeExpenseMutation();
 
     const handleDelete = () => {
@@ -54,7 +55,7 @@ export const DetailCardList = ({incomeExpense}) => {
     }
 
     return(
-        <TouchableOpacity style={{marginTop: 5}}>
+        <TouchableOpacity style={{marginTop: 5}} onPress={() => navigation.navigate('TransactionDetail', {incomeExpense})}>
             <View className='rounded-3xl bg-white w-full p-3 flex-row justify-between items-center px-5'>
                 <View>
                     <Text className='font-bold text-lg text-black'>{incomeExpense.information}</Text>

@@ -14,6 +14,7 @@ import {Profile} from "../Screens/Profile";
 import {Text, View} from "react-native";
 import {Entypo, MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
 import { Platform } from "react-native";
+import {TransactionDetail} from "../Screens/TransactionDetail";
 
 export const Router = () => {
     const stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ export const Router = () => {
                 <>
                     <stack.Screen name="myTab" component={MyTab} options={{headerShown: false}} />
                     <stack.Screen name={"List"} component={TransactionList} options={{headerShown: false}} />
+                    <stack.Screen name={'TransactionDetail'} component={TransactionDetail} options={{headerShown: false}} />
                 </>
             ) : (
                 <>
