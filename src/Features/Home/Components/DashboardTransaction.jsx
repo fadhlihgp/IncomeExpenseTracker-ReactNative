@@ -5,7 +5,7 @@ import {styled} from "nativewind";
 export const DashboardTransaction = ({navigation, incomeExpenses}) => {
     return(
         <View>
-            {incomeExpenses.length > 1 ? <FlatList
+            {incomeExpenses.length > 0 ? <FlatList
                 data={incomeExpenses}
                 renderItem={({item}) => <View className="mb-4"><DashboardCard incomeExpense={item} /></View> }
                 keyExtractor={(item) => item.id}
@@ -18,8 +18,6 @@ export const DashboardTransaction = ({navigation, incomeExpenses}) => {
                     <Text className="font-semibold text-lg text-center">No Transaction found</Text>
                 </View>
             }
-
-
         </View>
     )
 }

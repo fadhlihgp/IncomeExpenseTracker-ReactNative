@@ -1,12 +1,13 @@
 import {useDispatch} from "react-redux";
 import {useFocusEffect} from "@react-navigation/native";
-import {useCallback} from "react";
+import {useCallback, useRef} from "react";
 import * as SecureStore from "expo-secure-store";
 import {loginSuccess} from "../Redux/Slices/authSlice";
 import {View, Text} from "react-native";
 
 const SplashScreen = ({ navigation }) => {
     const dispatch = useDispatch();
+    const ref = useRef(null);
 
     useFocusEffect(
         useCallback(() => {
@@ -18,7 +19,6 @@ const SplashScreen = ({ navigation }) => {
                         // eslint-disable-next-line no-param-reassign
                         console.log("Token Detected, Validating");
                         dispatch(loginSuccess({ token }));
-
                         return;
                     }
 

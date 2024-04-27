@@ -36,13 +36,17 @@ const years = [
     {key: 2034, value: '2034'},
     {key: 2035, value: '2035'},
 ]
-export const TransactionListComponent = () => {
+export const TransactionListComponent = ({transactionsData}) => {
 
-
-    const data = listDummyData;
+    const data = transactionsData;
     const [filter, setFilter] = useState(data.data);
     const [yearFilter, setYearFilter] = useState(99);
-    const [monthFilter, setMonthFilter] = useState(99)
+    const [monthFilter, setMonthFilter] = useState(99);
+    const [balanceNull, setBalanceNull] = useState({
+        balance: 0,
+        incomeTotal: 0,
+        expenseTotal: 0
+    })
     // const filter = data;
 
     useEffect(() => {
@@ -61,8 +65,7 @@ export const TransactionListComponent = () => {
         }
 
         setFilter(filter1);
-
-    }, [yearFilter, monthFilter, setYearFilter, setMonthFilter]);
+    }, [yearFilter, monthFilter, setYearFilter, setMonthFilter, transactionsData]);
 
     const onChangeYears = (value) => {
         if (value === 99) {
@@ -88,7 +91,7 @@ export const TransactionListComponent = () => {
         <View style={{flex: 1, marginTop: '7%' }} className='bg-blue-100 p-5' >
             <View className='mt-7'>
                 <Text className='text-slate-800 font-extrabold text-xl text-center mb-7'>Transaction List</Text>
-                <BalanceListComponent />
+                <BalanceListComponent balanceData={filter.length > 0 ? filter[0] : balanceNull} />
             </View>
 
             <SafeAreaView style={{flex: 1, marginBottom: '10%', marginTop: '5%'}}>

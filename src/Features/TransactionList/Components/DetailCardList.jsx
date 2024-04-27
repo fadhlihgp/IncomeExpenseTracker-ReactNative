@@ -1,10 +1,58 @@
-import {Text, TouchableHighlight, TouchableOpacity, View} from "react-native";
+import {Alert, Text, TouchableHighlight, TouchableOpacity, View} from "react-native";
 import {changeCurrencyFormat} from "../../../Utils/changeFormat";
 import moment from "moment/moment";
 import {Badge} from "../../../Components/Badge";
 import {FontAwesome, FontAwesome6} from "@expo/vector-icons";
+import {useDeleteIncomeExpenseMutation} from "../../../Redux/Slices/inExpApi";
+import Toast from "react-native-toast-message";
+import {useEffect} from "react";
 
 export const DetailCardList = ({incomeExpense}) => {
+
+    const [deleteIncomeExpense, { isLoading, isError, error, data }] = useDeleteIncomeExpenseMutation();
+
+    const handleDelete = () => {
+        deleteIncomeExpense(incomeExpense);
+    };
+
+    useEffect(() => {
+        if (data) {
+            Toast.show({
+                type: 'success',
+                text1: data.message
+            });
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (error) {
+            Toast.show({
+                type: 'error',
+                text1: error.response.message
+            });
+        }
+    }, [error]);
+
+    const showDeleteConfirmation = () => {
+        Alert.alert(
+            null,
+            "Are you sure want delete this item ?",
+            [
+                {
+                    text: "Cancel",
+                    style: "cancel",
+                },
+                {
+                    text: "Yes",
+                    onPress: handleDelete
+                }
+            ],
+            {
+                cancelable: true
+            }
+        )
+    }
+
     return(
         <TouchableOpacity style={{marginTop: 5}}>
             <View className='rounded-3xl bg-white w-full p-3 flex-row justify-between items-center px-5'>
@@ -25,7 +73,7 @@ export const DetailCardList = ({incomeExpense}) => {
 
                 </View>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={showDeleteConfirmation}>
                     <FontAwesome6 name="trash" size={28} color="black" />
                 </TouchableOpacity>
 

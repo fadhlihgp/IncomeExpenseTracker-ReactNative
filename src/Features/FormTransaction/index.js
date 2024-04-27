@@ -14,6 +14,7 @@ import {useState} from "react";
 import moment from "moment";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Toast from "react-native-toast-message";
+import {useAddIncomeExpenseMutation} from "../../Redux/Slices/inExpApi";
 
 export const FormTransactionContainer = ({navigation}) => {
     const [openDate, setOpenDate] = useState(false);
@@ -24,6 +25,8 @@ export const FormTransactionContainer = ({navigation}) => {
         date: new Date(),
         information: ""
     })
+
+    const [addTrans] = useAddIncomeExpenseMutation();
 
     const type = [
         {key: true, value: 'Income'},
@@ -45,7 +48,7 @@ export const FormTransactionContainer = ({navigation}) => {
     }
 
     const handleSubmit = () => {
-        // setDataInput({...dataInput, amount: parseInt(dataInput.amountString)})
+        addTrans(dataInput);
         console.log(dataInput)
         Toast.show({
             type: 'success',
@@ -58,7 +61,7 @@ export const FormTransactionContainer = ({navigation}) => {
             date: new Date(),
             information: ""
         })
-        navigation.navigate('List')
+        navigation.goBack();
     }
     return(
         <>
