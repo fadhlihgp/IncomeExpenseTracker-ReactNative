@@ -3,9 +3,10 @@ import {MaterialIcons, SimpleLineIcons} from "@expo/vector-icons";
 import {useDispatch} from "react-redux";
 import * as SecureStorage from "expo-secure-store"
 import {logoutAuth} from "../../../Redux/Slices/authSlice";
-import {useGetAccountQuery} from "../../../Redux/Slices/accountApi";
+import {useGetAccountQuery} from "../../../Redux/Services/accountApi";
 import {useEffect, useState} from "react";
 import Toast from "react-native-toast-message";
+import {useGetAllQuery, useGetDashboardQuery} from "../../../Redux/Services/inExpApi";
 
 export const TopBar = ({navigation}) => {
     const dispatch = useDispatch();
@@ -13,8 +14,8 @@ export const TopBar = ({navigation}) => {
 
     const logout = async () => {
         await SecureStorage.deleteItemAsync("token");
-        // navigation.replace('LoginScreen');
         dispatch(logoutAuth());
+        navigation.replace('LoginScreen');
     }
 
     const {

@@ -3,7 +3,7 @@ import {changeCurrencyFormat} from "../../../Utils/changeFormat";
 import moment from "moment/moment";
 import {Badge} from "../../../Components/Badge";
 import {FontAwesome, FontAwesome6} from "@expo/vector-icons";
-import {useDeleteIncomeExpenseMutation} from "../../../Redux/Slices/inExpApi";
+import {useDeleteIncomeExpenseMutation} from "../../../Redux/Services/inExpApi";
 import Toast from "react-native-toast-message";
 import {useEffect} from "react";
 import {useNavigation} from "@react-navigation/native";

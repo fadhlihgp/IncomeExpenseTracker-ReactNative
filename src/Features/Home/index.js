@@ -3,9 +3,10 @@ import {TopBar} from "./Components/TopBar";
 import {BalanceComponent} from "./Components/BalanceComponent";
 import {DashboardTransaction} from "./Components/DashboardTransaction";
 import {DashboardData} from "./dashboardData";
-import {useGetDashboardQuery} from "../../Redux/Slices/inExpApi";
+import {useGetDashboardQuery} from "../../Redux/Services/inExpApi";
 import {useEffect, useState} from "react";
 import {LoadingComponent} from "../../Components/LoadingComponent";
+import {useGetAccountQuery} from "../../Redux/Services/accountApi";
 
 export const HomeContainer = ({navigation}) => {
     const dataAll = DashboardData;
@@ -20,9 +21,28 @@ export const HomeContainer = ({navigation}) => {
     if (isLoading) {
         content = <ActivityIndicator />
     } else if (isSuccess) {
-        content = <Text>{JSON.stringify(dashboardData)}</Text>
+        content = <>
+            <View>
+                <TopBar navigation={navigation} />
+            </View>
+            <View className="mt-10">
+                <BalanceComponent totalBalance={dashboardData.data.balance} expense={dashboardData.data.expensesTotal} income={dashboardData.data.incomeTotal} />
+            </View>
+            <View className='mt-10 mb-3'>
+                <View className="flex-row justify-between mb-1">
+                    <Text className='font-bold text-md'>Last Transaction</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate("List")}>
+                        <Text className='text-md font-semibold text-[#0F6DC3]'>See All</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+            <SafeAreaView style={{flex: 1, marginBottom: '10%'}} >
+                <DashboardTransaction navigation={navigation} incomeExpenses={dashboardData.data.incomeExpenses} />
+            </SafeAreaView>
+        </>
     } else if (isError) {
-        content = <Text>Error</Text>
+        content = <Text>error</Text>
     }
 
     return(
@@ -30,24 +50,7 @@ export const HomeContainer = ({navigation}) => {
             <LoadingComponent />
             :
                 <View style={{marginTop: '7%', flex: 1}} className="p-5 bg-blue-100 w-full h-full">
-                    <View>
-                        <TopBar navigation={navigation} />
-                    </View>
-                    <View className="mt-10">
-                        <BalanceComponent totalBalance={dashboardData.data.balance} expense={dashboardData.data.expensesTotal} income={dashboardData.data.incomeTotal} />
-                    </View>
-                    <View className='mt-10 mb-3'>
-                        <View className="flex-row justify-between mb-1">
-                            <Text className='font-bold text-md'>Last Transaction</Text>
-                            <TouchableOpacity onPress={() => navigation.navigate("List")}>
-                                <Text className='text-md font-semibold text-[#0F6DC3]'>See All</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-
-                    <SafeAreaView style={{flex: 1, marginBottom: '10%'}} >
-                        <DashboardTransaction navigation={navigation} incomeExpenses={dashboardData.data.incomeExpenses} />
-                    </SafeAreaView>
+                    {content}
                 </View>
     )
 }

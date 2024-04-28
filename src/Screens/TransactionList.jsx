@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import { TransactionListComponent } from "../Features/TransactionList";
-import { useGetAllQuery } from "../Redux/Slices/inExpApi";
+import { useGetAllQuery } from "../Redux/Services/inExpApi";
 import { LoadingComponent } from "../Components/LoadingComponent";
 import Toast from "react-native-toast-message";
 

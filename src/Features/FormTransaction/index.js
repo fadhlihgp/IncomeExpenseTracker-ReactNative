@@ -14,7 +14,7 @@ import {useState} from "react";
 import moment from "moment";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Toast from "react-native-toast-message";
-import {useAddIncomeExpenseMutation} from "../../Redux/Slices/inExpApi";
+import {useAddIncomeExpenseMutation} from "../../Redux/Services/inExpApi";
 
 export const FormTransactionContainer = ({navigation}) => {
     const [openDate, setOpenDate] = useState(false);
@@ -48,20 +48,27 @@ export const FormTransactionContainer = ({navigation}) => {
     }
 
     const handleSubmit = () => {
-        addTrans(dataInput);
-        console.log(dataInput)
-        Toast.show({
-            type: 'success',
-            text1: 'Successfully saved'
-        })
-        setDataInput({
-            isIncome: true,
-            amountString: '0',
-            amount: 0,
-            date: new Date(),
-            information: ""
-        })
-        navigation.goBack();
+        addTrans(dataInput)
+            .then((res) => {
+                Toast.show({
+                    type: 'success',
+                    text1: res.data.message
+                })
+                setDataInput({
+                    isIncome: true,
+                    amountString: '0',
+                    amount: 0,
+                    date: new Date(),
+                    information: ""
+                })
+                navigation.goBack();
+            })
+            .catch((err) => {
+                Toast.show({
+                    type: 'error',
+                    text1: err.data.message ?? 'Failed save'
+                })
+            })
     }
     return(
         <>

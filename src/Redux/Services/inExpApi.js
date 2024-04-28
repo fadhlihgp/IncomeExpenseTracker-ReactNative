@@ -1,29 +1,14 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { base_url_api } from "../../Utils/constData";
-import * as SecureStorage from "expo-secure-store";
+import {api} from "../api";
 
-export const inExpApi = createApi({
-    reducerPath: 'inExpApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: base_url_api,
-        prepareHeaders: async (headers, { getState }) => {
-            // Ambil token secara asynchronous
-            const { auth } = getState();
-            const token = auth.token;
-            if (token) {
-                headers.set('authorization', `Bearer ${token}`);
-            }
-        }
-    }),
-    tagTypes: ['dashboardData', 'transactionsData', 'token'],
+export const inExpApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getDashboard: builder.query({
             query: () => '/income-expense/dashboard',
-            providesTags: ['dashboardData', 'token']
+            providesTags: ['dashboardData']
         }),
         getAll: builder.query({
             query: () => '/income-expense',
-            providesTags: ['transactionsData', 'token']
+            providesTags: ['transactionsData']
         }),
         addIncomeExpense: builder.mutation({
             query: (dataInput) => ({

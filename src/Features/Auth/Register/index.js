@@ -1,18 +1,14 @@
-import {ImageBackground, ScrollView, TouchableOpacity, View, Image, StyleSheet, Text} from "react-native";
+import {ImageBackground, ScrollView, TouchableOpacity, View, StyleSheet, Text} from "react-native";
 import bgImage from "../../../Assets/bg1.png";
-import rect1 from "../../../Assets/rectangle1.png";
-import {FormLoginContainer} from "../Login/FormLoginContainer";
 import {FormRegisterContainer} from "./FormRegisterContainer";
 import {useState} from "react";
-import {register} from "../../../Redux/actions/authActions";
 import Toast from "react-native-toast-message";
 import {ToastComponent} from "../../../Components/ToastComponent";
-import {useTimeout} from "react-native-toast-message/lib/src/hooks";
 import {useDispatch} from "react-redux";
 import {loginRequest, registerSuccess} from "../../../Redux/Slices/authSlice";
+import {useRegisterMutation} from "../../../Redux/Services/authApi";
 
 export const RegisterContainer = ({navigation}) => {
-    const [error, setError] = useState();
     const [data, setData] = useState({
         fullname : "",
         userName: "",
@@ -23,7 +19,7 @@ export const RegisterContainer = ({navigation}) => {
         roleId: "2"
     })
     const dispatch = useDispatch();
-
+    const [registerData] = useRegisterMutation();
     const handleOnChange = (name, value) => {
         setData({...data, [name]: value})
     }
@@ -36,17 +32,46 @@ export const RegisterContainer = ({navigation}) => {
             return;
         }
 
-        await register(data)
-            .then((res) => {
-                ToastComponent("success", res.data.message);
-                navigation.replace("LoginScreen")
+        registerData(data).unwrap()
+            .then(res => {
+                // console.log(res)
+                Toast.show({
+                    type: 'success',
+                    text1: res.data.message
+                })
+                setData({
+                    fullname : "",
+                    userName: "",
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                    phoneNumber: "",
+                    roleId: "2"
+                })
+                navigation.navigate('LoginScreen')
             })
             .catch((err) => {
-                ToastComponent("error", err.response.data.message);
+                // console.error(err)
+                Toast.show({
+                    type: 'error',
+                    text1: err.data.message
+                })
             })
             .finally(() => {
                 dispatch(registerSuccess())
             })
+
+        // await register(data)
+        //     .then((res) => {
+        //         ToastComponent("success", res.data.message);
+        //         navigation.replace("LoginScreen")
+        //     })
+        //     .catch((err) => {
+        //         ToastComponent("error", err.response.data.message);
+        //     })
+        //     .finally(() => {
+        //         dispatch(registerSuccess())
+        //     })
     }
 
     return(

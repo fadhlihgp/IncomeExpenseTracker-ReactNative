@@ -1,6 +1,6 @@
 import Toast from "react-native-toast-message";
 
-export const ToastComponent = (typeText, message1, message2) => {
+export const ToastComponent = ({typeText, message1, message2}) => {
     return(
         Toast.show({
             type: typeText,

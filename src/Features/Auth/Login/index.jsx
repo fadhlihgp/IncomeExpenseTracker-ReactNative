@@ -2,41 +2,44 @@ import {ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity, Scroll
 import bgImage from "../../../Assets/bg1.png"
 import rect1 from "../../../Assets/rectangle1.png";
 import { FormLoginContainer } from "./FormLoginContainer";
-import {login} from "../../../Redux/actions/authActions";
 import {useState} from "react";
 import * as SecureStorage from "expo-secure-store";
 import {useDispatch, useSelector} from "react-redux";
 import {loginFailure, loginRequest, loginSuccess, registerSuccess} from "../../../Redux/Slices/authSlice";
 import Toast from "react-native-toast-message";
-import {useTimeout} from "react-native-toast-message/lib/src/hooks";
+import {useLoginMutation} from "../../../Redux/Services/authApi";
 
 export const LoginContainer = ({navigation}) => {
     const dispatch = useDispatch();
-    const [data, setData] = useState({
+    const [dataInput, setDataInput] = useState({
         email: "",
         password: ""
     })
 
+    const [login] = useLoginMutation()
+
     const handleOnChange = (field, value) => {
-        setData({...data, [field]: value})
+        setDataInput({...dataInput, [field]: value})
     }
 
-    const handleLogin = async () => {
+    const handleLogin = () => {
         dispatch(loginRequest());
-        // console.log(data)
-        await login(data)
+        login(dataInput).unwrap()
             .then((res) => {
-                // console.log(res)
-                const token = res.data.data.token;
+                const token = res.data.token;
                 SecureStorage.setItem("token", token);
                 dispatch(loginSuccess({token: token}))
+                Toast.show({
+                    type: 'success',
+                    text1: res.message
+                })
             })
             .catch((err) => {
                 dispatch(loginFailure({error: "Error"}))
-                console.log(err)
+                console.log(err.data.message)
                 Toast.show({
                     type: "error",
-                    text1: err.response.data.message ?? "Failed to login"
+                    text1: err.data.message ?? "Failed to login"
                 })
             })
             .finally(() => {
@@ -52,7 +55,7 @@ export const LoginContainer = ({navigation}) => {
                     <Text style={styles.title}>Income Expense Tracker</Text>
                     <Image source={rect1} />
 
-                    <FormLoginContainer handleSubmit={handleLogin} navigation={navigation} data={data} handleOnChange={handleOnChange} />
+                    <FormLoginContainer handleSubmit={handleLogin} navigation={navigation} data={dataInput} handleOnChange={handleOnChange} />
 
                     <View style={styles.register}>
                         <Text style={{fontWeight: 'bold', fontSize: 15}}>Don't have an account ?</Text>
