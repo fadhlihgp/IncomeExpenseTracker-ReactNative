@@ -9,7 +9,7 @@ import {SkillComp} from "../Features/About/Components/SkillCom";
 export const About = () => {
     return(
         <ScrollView style={styles.container}>
-            <View >
+            <View className='mb-20'>
                 <ImageBackground source={bg2} style={styles.background}>
                     <View style={styles.titleStyle}>
                         <Text style={{fontWeight: 'bold', fontSize: 20, color: 'white', textAlign: 'center'}}>Fadhlih Girindra Putra</Text>
@@ -19,17 +19,15 @@ export const About = () => {
                     </View>
                 </ImageBackground>
                 <AboutMeComp />
-                <SocialMediaComp />
                 <SkillComp />
+                <SocialMediaComp />
             </View>
         </ScrollView>
     )
 }
 const styles = StyleSheet.create({
     container: {
-        marginTop: '10%',
-        flex:1,
-        backgroundColor: 'white',
+        flex:1
     },
     background: {
         height: 250,

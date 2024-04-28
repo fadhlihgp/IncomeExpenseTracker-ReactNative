@@ -57,7 +57,7 @@ export const DetailCardList = ({incomeExpense}) => {
     return(
         <TouchableOpacity style={{marginTop: 5}} onPress={() => navigation.navigate('TransactionDetail', {incomeExpense})}>
             <View className='rounded-3xl bg-white w-full p-3 flex-row justify-between items-center px-5'>
-                <View>
+                <View style={{width: '35%'}}>
                     <Text className='font-bold text-lg text-black'>{incomeExpense.information}</Text>
                 </View>
 

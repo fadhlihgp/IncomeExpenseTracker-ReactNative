@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {loginFailure, loginRequest, loginSuccess, registerSuccess} from "../../../Redux/Slices/authSlice";
 import Toast from "react-native-toast-message";
 import {useLoginMutation} from "../../../Redux/Services/authApi";
+import {Entypo} from "@expo/vector-icons";
 
 export const LoginContainer = ({navigation}) => {
     const dispatch = useDispatch();
@@ -51,10 +52,10 @@ export const LoginContainer = ({navigation}) => {
     return(
         <>
             <ScrollView contentContainerStyle={styles.container} >
-                <ImageBackground source={bgImage} style={styles.background}>
+                <View style={styles.background} className='rounded-b-full bg-blue-600'>
                     <Text style={styles.title}>Income Expense Tracker</Text>
-                    <Image source={rect1} />
-
+                    {/*<Image source={rect1} />*/}
+                    <Entypo name="flattr" size={48} color="white" />
                     <FormLoginContainer handleSubmit={handleLogin} navigation={navigation} data={dataInput} handleOnChange={handleOnChange} />
 
                     <View style={styles.register}>
@@ -63,7 +64,7 @@ export const LoginContainer = ({navigation}) => {
                             <Text style={{fontWeight: 'bold', fontSize: 15, color: '#1F4BBC'}}>Register</Text>
                         </TouchableOpacity>
                     </View>
-                </ImageBackground>
+                </View>
             </ScrollView>
         </>
     )
@@ -73,21 +74,22 @@ const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
         backgroundColor: '#F1F1F1',
-        justifyContent: 'center',
+        // justifyContent: 'center',
     },
     background: {
-        flex: 1,
+        // flex: 1,
         // resizeMode: 'contain',
-        height: '70%',
+        height: '80%',
         alignItems: 'center',
         paddingVertical: 50,
-        gap: 25
+        gap: 15
     },
     title: {
         fontStyle: 'normal',
         fontWeight: 'bold',
         color: 'white',
         fontSize: 20,
+        marginTop: 30
     },
     register: {
         justifyContent: 'center',

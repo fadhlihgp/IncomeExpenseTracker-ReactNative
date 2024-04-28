@@ -1,4 +1,4 @@
-import {ImageBackground, ScrollView, TouchableOpacity, View, StyleSheet, Text} from "react-native";
+import {ImageBackground, ScrollView, TouchableOpacity, View, StyleSheet, Text, SafeAreaView} from "react-native";
 import bgImage from "../../../Assets/bg1.png";
 import {FormRegisterContainer} from "./FormRegisterContainer";
 import {useState} from "react";
@@ -75,9 +75,9 @@ export const RegisterContainer = ({navigation}) => {
     }
 
     return(
-        <View>
+        <SafeAreaView>
             <ScrollView contentContainerStyle={styles.container} >
-                <ImageBackground source={bgImage} style={styles.background}>
+                <View style={styles.background} className='rounded-b-full bg-blue-600'>
                     <FormRegisterContainer handleSubmit={handleRegister} navigation={navigation} data={data} handleOnChange={handleOnChange} />
 
                     <View style={styles.register}>
@@ -86,27 +86,25 @@ export const RegisterContainer = ({navigation}) => {
                             <Text style={{fontWeight: 'bold', fontSize: 15, color: '#1F4BBC'}}>Login</Text>
                         </TouchableOpacity>
                     </View>
-                </ImageBackground>
+                </View>
 
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 50,
+        paddingTop: 50,
         flexGrow: 1,
         backgroundColor: '#F1F1F1'
         // justifyContent: 'center',
     },
     background: {
-        flex: 1,
-        // resizeMode: 'contain',
-        height: '90%',
+        height: '70%',
         alignItems: 'center',
-        paddingVertical: 80,
-        gap: 25
+        paddingVertical: 50,
+        gap: 15
     },
     title: {
         fontStyle: 'normal',

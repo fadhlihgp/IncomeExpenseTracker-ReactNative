@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import {About} from "./src/Screens/About";
 import {Provider} from "react-redux";
 import {store} from "./src/Redux/store";
 import {NavigationContainer} from "@react-navigation/native";

@@ -74,7 +74,7 @@ export const FormTransactionContainer = ({navigation}) => {
         <>
             {/*<Toast />*/}
             <ScrollView
-                style={{marginTop: '7%' }} className='bg-blue-100 w-full h-full py-3 px-6'>
+                style={{paddingTop: '10%' }} className='bg-blue-100 w-full h-full py-3 px-6'>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Ionicons name="return-up-back-outline" size={32} color="black" />
                 </TouchableOpacity>

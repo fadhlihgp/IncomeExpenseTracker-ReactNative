@@ -49,7 +49,7 @@ export const HomeContainer = ({navigation}) => {
         isLoading ?
             <LoadingComponent />
             :
-                <View style={{marginTop: '7%', flex: 1}} className="p-5 bg-blue-100 w-full h-full">
+                <View style={{paddingTop: '15%', flex: 1}} className="p-5 bg-blue-100 w-full h-full">
                     {content}
                 </View>
     )

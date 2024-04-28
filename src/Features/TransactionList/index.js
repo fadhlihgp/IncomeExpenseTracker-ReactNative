@@ -1,8 +1,6 @@
-import {FlatList, SafeAreaView, ScrollView, Text, View} from "react-native";
+import {SafeAreaView, Text, View} from "react-native";
 import {BalanceListComponent} from "./Components/BalanceListComponent";
-import {DetailCardList} from "./Components/DetailCardList";
 import {DataContainer} from "./Components/DataContainer";
-import {listDummyData} from "./listDummyData";
 import {SelectList} from "react-native-dropdown-select-list";
 import {useEffect, useState} from "react";
 
@@ -67,28 +65,8 @@ export const TransactionListComponent = ({transactionsData}) => {
         setFilter(filter1);
     }, [yearFilter, monthFilter, setYearFilter, setMonthFilter, transactionsData]);
 
-    const onChangeYears = (value) => {
-        if (value === 99) {
-            setFilter(data.data);
-        } else {
-            let filter1 = data.data.filter(d => new Date(d.date).getFullYear() === value);
-            console.log(filter1)
-            setFilter(filter1)
-        }
-    }
-
-    const onChangeMonths = (value) => {
-        if (value === 99) {
-            setFilter(data.data);
-        } else {
-            let filter1 = data.data.filter(d => new Date(d.date).getMonth() === value);
-            console.log(filter1)
-            setFilter(filter1)
-        }
-    }
-
     return(
-        <View style={{flex: 1, marginTop: '7%' }} className='bg-blue-100 p-5' >
+        <View style={{flex: 1, paddingTop: '7%' }} className='bg-blue-100 p-5' >
             <View className='mt-7'>
                 <Text className='text-slate-800 font-extrabold text-xl text-center mb-7'>Transaction List</Text>
                 <BalanceListComponent balanceData={filter.length > 0 ? filter[0] : balanceNull} />
