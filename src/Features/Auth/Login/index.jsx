@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     background: {
         // flex: 1,
         // resizeMode: 'contain',
-        height: '80%',
+        height: '75%',
         alignItems: 'center',
         paddingVertical: 50,
         gap: 15
@@ -94,6 +94,6 @@ const styles = StyleSheet.create({
     register: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 0
+        marginTop: 20
     }
 });

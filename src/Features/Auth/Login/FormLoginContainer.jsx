@@ -12,11 +12,11 @@ export const FormLoginContainer = ({navigation, handleOnChange, data, handleSubm
             <View style={styles.formContainer}>
                 <TextInput style={styles.textInputStyle} value={data.email} onChangeText={(value) => handleOnChange("email", value)} placeholder="Username or Email" />
                 <TextInput style={styles.textInputStyle} value={data.password} onChangeText={(value) => handleOnChange("password", value)} placeholder="Password" secureTextEntry={true}/>
-                <TouchableOpacity style={{marginTop: 10}}>
-                <Text style={{color: '#3166CC', fontWeight: '800', fontSize: 15}}>
-                    Forgot Password ?
-                </Text>
-                </TouchableOpacity>
+                {/*<TouchableOpacity style={{marginTop: 10}}>*/}
+                {/*<Text style={{color: '#3166CC', fontWeight: '800', fontSize: 15}}>*/}
+                {/*    Forgot Password ?*/}
+                {/*</Text>*/}
+                {/*</TouchableOpacity>*/}
 
                 <TouchableOpacity
                     disabled={isLoading}

@@ -6,7 +6,7 @@ import {
     TextInput,
     TouchableHighlight,
     TouchableOpacity,
-    View
+    View, KeyboardAvoidingView
 } from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import {SelectList} from "react-native-dropdown-select-list";
@@ -73,70 +73,72 @@ export const FormTransactionContainer = ({navigation}) => {
     return(
         <>
             {/*<Toast />*/}
-            <ScrollView
-                style={{paddingTop: '10%' }} className='bg-blue-100 w-full h-full py-3 px-6'>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Ionicons name="return-up-back-outline" size={32} color="black" />
-                </TouchableOpacity>
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior={'padding'}>
+                <ScrollView
+                    style={{paddingTop: '10%' }} className='bg-blue-100 w-full h-full py-3 px-6'>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Ionicons name="return-up-back-outline" size={32} color="black" />
+                    </TouchableOpacity>
 
-                <View className="mt-5">
-                    <Text className='text-slate-800 font-bold text-lg text-center mb-7'>Add Transactions</Text>
-                    <View style={{rowGap: 20}}>
-                        <View style={{gap: 10}}>
-                            <Text>Type</Text>
-                            <SelectList
-                                data={type}
-                                setSelected={(value) => onChangeInput("isIncome", value)}
-                                save="key"
-                                defaultOption={{key: true, value: 'Income'}}
-                                boxStyles={{backgroundColor: 'white', height: 50, borderRadius: 16}}
-                            />
-                        </View>
+                    <View className="mt-5">
+                        <Text className='text-slate-800 font-bold text-lg text-center mb-7'>Add Transactions</Text>
+                        <View style={{rowGap: 20}}>
+                            <View style={{gap: 10}}>
+                                <Text>Type</Text>
+                                <SelectList
+                                    data={type}
+                                    setSelected={(value) => onChangeInput("isIncome", value)}
+                                    save="key"
+                                    defaultOption={{key: true, value: 'Income'}}
+                                    boxStyles={{backgroundColor: 'white', height: 50, borderRadius: 16}}
+                                />
+                            </View>
 
-                        <View style={{gap: 10}}>
-                            <Text>Amount</Text>
-                            <TextInput
-                                value={dataInput.amountString}
-                                keyboardType="numeric"
-                                className='bg-white rounded-2xl text-lg p-4'
-                                onChangeText={(value) => onChangeInput("amountString", (value))}
-                            />
-                        </View>
+                            <View style={{gap: 10}}>
+                                <Text>Amount</Text>
+                                <TextInput
+                                    value={dataInput.amountString}
+                                    keyboardType="numeric"
+                                    className='bg-white rounded-2xl text-lg p-4'
+                                    onChangeText={(value) => onChangeInput("amountString", (value))}
+                                />
+                            </View>
 
-                        <View style={{gap: 10}}>
-                            <Text>Date</Text>
-                            <TextInput
-                                onPressIn={() => setOpenDate(true)}
-                                value={moment(dataInput.date).format('DD MMMM yyyy')}
-                                // editable={false}
-                                className='bg-white rounded-2xl text-lg p-4' />
-                        </View>
+                            <View style={{gap: 10}}>
+                                <Text>Date</Text>
+                                <TextInput
+                                    onPressIn={() => setOpenDate(true)}
+                                    value={moment(dataInput.date).format('DD MMMM yyyy')}
+                                    // editable={false}
+                                    className='bg-white rounded-2xl text-lg p-4' />
+                            </View>
 
-                        {openDate && (
-                            <DateTimePicker
-                                value={dataInput.date}
-                                testID='datetimepicker'
-                                onChange={onChangeDate}
-                                mode={'date'}
-                            />
-                        )}
+                            {openDate && (
+                                <DateTimePicker
+                                    value={dataInput.date}
+                                    testID='datetimepicker'
+                                    onChange={onChangeDate}
+                                    mode={'date'}
+                                />
+                            )}
 
-                        <View style={{gap: 10}}>
-                            <Text>Note</Text>
-                            <TextInput
-                                value={dataInput.information}
-                                onChangeText={(value) => onChangeInput("information", value)}
-                                className='bg-white rounded-2xl text-lg p-4' />
+                            <View style={{gap: 10}}>
+                                <Text>Note</Text>
+                                <TextInput
+                                    value={dataInput.information}
+                                    onChangeText={(value) => onChangeInput("information", value)}
+                                    className='bg-white rounded-2xl text-lg p-4' />
+                            </View>
                         </View>
                     </View>
-                </View>
 
-                <TouchableOpacity
-                    onPress={handleSubmit}
-                    className='w-full h-11 bg-blue-700 justify-center items-center rounded-3xl mt-12'>
-                    <Text className='text-white font-bold text-lg'>Save</Text>
-                </TouchableOpacity>
-            </ScrollView>
+                    <TouchableOpacity
+                        onPress={handleSubmit}
+                        className='w-full h-11 bg-blue-700 justify-center items-center rounded-3xl mt-12'>
+                        <Text className='text-white font-bold text-lg'>Save</Text>
+                    </TouchableOpacity>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </>
     )
 }
